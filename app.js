@@ -1,5 +1,12 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+
+bodyParser.urlencoded({extended:true})
+//enable form data
+
 
 
 var user = {
@@ -23,6 +30,16 @@ app.get("/user",(req,res)=>{
         message:"user api called",
         user:user
     })
+})
+
+app.post("/employee",(req,res)=>{
+
+    console.log("employee api called");
+    console.log(req);
+    //form data
+    
+    res.send("employee api called");
+
 })
 
 app.get("/user/:id",(req,res)=>{
