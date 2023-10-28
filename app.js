@@ -14,8 +14,14 @@ bodyParser.urlencoded({ extended: true });
 //router
 
 const employeeRoutes = require("./routes/EmployeeRoutes");
+const departmentRoutes = require("./routes/DepartmentRoutes");
+const userRoutes = require("./routes/UserRoutes");
+const roleRoutes = require("./routes/RoleRoutes");
 
 app.use("/api", employeeRoutes);
+app.use("/api", departmentRoutes);
+app.use("/api", userRoutes);
+app.use("/api", roleRoutes);
 
 
 
@@ -30,7 +36,7 @@ db.then(() => {
   console.log(err);
 });
 
-const PORT = 3001;
+const PORT = 3002;
 //creating server... using express..
 app.listen(PORT, () => {
   console.log("server is running ", PORT);
