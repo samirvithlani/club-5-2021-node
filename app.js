@@ -36,7 +36,7 @@ db.then(() => {
   console.log(err);
 });
 
-const PORT = 3002;
+const PORT = 3001;
 //creating server... using express..
 app.listen(PORT, () => {
   console.log("server is running ", PORT);
