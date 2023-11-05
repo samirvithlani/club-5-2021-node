@@ -1,0 +1,6 @@
+create permissions model... name, description
+
+emplyee --> [permissions]--> read,write,delete,update,modify
+
+//read permissions,
+//write permissions,

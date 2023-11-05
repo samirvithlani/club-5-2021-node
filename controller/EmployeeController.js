@@ -1,4 +1,5 @@
 const employeeModel = require("../models/EmployeeModel");
+const encryptPassword = require("../util/PasswordEncrypt");
 
 const getAllEmployees = async (req, res) => {
   const employees = await employeeModel.find();
@@ -19,7 +20,16 @@ const getAllEmployees = async (req, res) => {
 const addEmployee = async (req, res) => {
   console.log("req body", req.body);
   //req.body
-  const employee = new employeeModel(req.body);
+
+  const empData ={
+    name:req.body.name,
+    email:req.body.email,
+    age:req.body.age,
+    password:encryptPassword.encryptPassword(req.body.password)
+  }
+
+
+  const employee = new employeeModel(empData);
   try {
     const flag = await employee.save();
     if (flag) {
@@ -130,6 +140,48 @@ const filterEmployee  = async (req,res) => {
 
 }
 
+const loginEmployee = async (req,res) => {
+
+
+    const email = req.body.email;
+    const password = req.body.password;
+    console.log(email,password);
+
+    const employee = await employeeModel.findOne({email:email});
+    console.log("employee",employee);
+    if(employee){
+
+      const flag = encryptPassword.comparePassword(password,employee.password);
+      console.log(flag);
+      if(flag){
+
+        res.status(200).json({
+          message:"Login success",
+          data:employee
+        })
+      }
+      else{
+        res.status(404).json({
+          message:"Login failed",
+          data:[]
+        })
+      }
+
+    }
+    else{
+
+      res.status(404).json({
+        message:"Register first",
+        data:[]
+      })
+
+    }
+
+
+
+}
+
+
 
 module.exports = {
   getAllEmployees,
@@ -137,5 +189,6 @@ module.exports = {
   deleteEmployee,
   updateEmployee,
     getEmployeeById,
-    filterEmployee
+    filterEmployee,
+    loginEmployee
 };
