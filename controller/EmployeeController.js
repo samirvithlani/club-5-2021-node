@@ -1,5 +1,6 @@
 const employeeModel = require("../models/EmployeeModel");
 const encryptPassword = require("../util/PasswordEncrypt");
+const tokenUtil = require("../util/TokenUtil");
 
 const getAllEmployees = async (req, res) => {
   const employees = await employeeModel.find();
@@ -155,9 +156,11 @@ const loginEmployee = async (req,res) => {
       console.log(flag);
       if(flag){
 
+        const token = tokenUtil.generateToken(employee.toObject())
+        console.log("token...",token);
         res.status(200).json({
           message:"Login success",
-          data:employee
+          data:token
         })
       }
       else{
