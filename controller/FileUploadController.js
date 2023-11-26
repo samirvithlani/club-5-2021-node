@@ -1,7 +1,8 @@
 const multer = require("multer");
+const googleController = require("./GoogleController");
 
 const storage = multer.diskStorage({
-  destination: "./uploads",
+  //destination: "./uploads",
   filename: (req, file, cb) => {
     cb(null, file.originalname);
   },
@@ -32,6 +33,10 @@ const uploadFile = async (req, res) => {
         message: err.message,
       });
     } else {
+      //googledrive...
+
+      googleController.uploadFile(req.file.path);
+
       res.status(200).json({
         message: "success",
         file: req.file,
