@@ -29,7 +29,7 @@ app.use("/api", fileUploadRoutes);
 
 
 
-const db = mongoose.connect("mongodb://127.0.0.1:27017/club5-node", {
+const db = mongoose.connect("mongodb+srv://samir:samir@cluster0.key63fx.mongodb.net/club5-node", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
