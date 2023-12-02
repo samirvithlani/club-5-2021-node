@@ -15,5 +15,5 @@ router.put("/employee/:id",employeeController.updateEmployee);
 router.get("/employee/:id",employeeController.getEmployeeById);
 router.get("/employee1/filter",employeeController.filterEmployee);
 router.post("/employee/login",employeeController.loginEmployee);
-
+router.post("/employee/bulk",employeeController.addBulkEmployee);
 module.exports = router;
