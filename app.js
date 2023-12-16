@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
+//const dotenv = require("dotenv").config();
+const config = require("./config");
 
 const app = express();
 app.use(cors());
@@ -28,8 +30,8 @@ app.use("/api", roleRoutes);
 app.use("/api", fileUploadRoutes);
 
 
-
-const db = mongoose.connect("mongodb+srv://samir:samir@cluster0.key63fx.mongodb.net/club5-node", {
+console.log("DB_URL", config.DB_URL);
+const db = mongoose.connect(config.DB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -40,8 +42,9 @@ db.then(() => {
   console.log(err);
 });
 
-const PORT = 3001;
+//const PORT = process.env.PORT || 4000;
 //creating server... using express..
+const PORT = config.PORT;
 app.listen(PORT, () => {
   console.log("server is running ", PORT);
 });
