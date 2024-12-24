@@ -26,13 +26,14 @@ const userRoutes = require("./routes/UserRoutes");
 const roleRoutes = require("./routes/RoleRoutes");
 const fileUploadRoutes = require("./routes/FileUploadRoutes");
 const productRoutes = require("./routes/ProductRoutes")
-const categorySchema = require("./models/ProductCategory")
+const categoryRoutes = require("./routes/CategoryRoutes")
 app.use("/api", employeeRoutes);
 app.use("/api", departmentRoutes);
 app.use("/api", userRoutes);
 app.use("/api", roleRoutes);
 app.use("/api", fileUploadRoutes);
-app.use("/api",productRoutes)
+app.use("/products",productRoutes)
+app.use("/categories",categoryRoutes)
 
 
 
