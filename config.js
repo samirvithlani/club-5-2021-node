@@ -10,6 +10,6 @@ module.exports = {
     NODE_ENV : process.env.NODE_ENV || 'development',
     HOST : process.env.HOST || 'localhost',
     PORT : process.env.PORT,
-    DB_URL: process.env.DB_URL || 'mongodb://127.0.0.1:27017/club5-node',
+    DB_URL: process.env.DB_URL || 'mongodb+srv://samir:samir@cluster0.key63fx.mongodb.net/club5-node',
 
 }
