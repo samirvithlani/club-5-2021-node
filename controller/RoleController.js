@@ -21,6 +21,14 @@ const addRole = async (req, res) => {
         })
     }
 }
+const getRoles = async(req,res)=>{
+    const roles = await roleModel.find();
+    res.json({
+        message:"roles",
+        data:roles
+    })
+}
 module.exports = {
-    addRole
+    addRole,
+    getRoles
 }
